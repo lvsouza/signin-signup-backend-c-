@@ -12,27 +12,18 @@ namespace Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class SignUpController : ControllerBase
     {
         private readonly BackendContext _context;
 
-        public UsersController(BackendContext context)
+        public SignUpController(BackendContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
-        {
-            var users = await _context.Users.ToListAsync();
-
-            return users;
-        }
-
-        // POST: api/Users
+        // POST: api/SignUp
         [HttpPost]
-        public async Task<ActionResult<User>> CreateUser([FromBody] User newUser)
+        public async Task<ActionResult<User>> SignUp([FromBody] User newUser)
         {
             try
             {
@@ -43,12 +34,11 @@ namespace Backend.Controllers
                     _context.Users.Add(newUser);
                     await _context.SaveChangesAsync();
 
-                    return CreatedAtAction("CreateUser", new { id = newUser.Id }, new
+                    return CreatedAtAction("SignUp", new { id = newUser.Id }, new
                     {
                         userName = newUser.UserName,
                         email = newUser.Email,
-                        name = newUser.Name,
-                        id = newUser.Id
+                        name = newUser.Name
                     });
                 }
                 else
