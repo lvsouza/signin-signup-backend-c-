@@ -29,6 +29,8 @@ namespace Backend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Backend", Version = "v1" });
             });
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +48,8 @@ namespace Backend
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(option => option.AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {
