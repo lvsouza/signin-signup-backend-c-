@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 using Backend.Models;
@@ -31,7 +32,13 @@ namespace Backend.Controllers
                 }
                 else
                 {
-                    return BadRequest("Email ou senha incorretos!");
+                    return BadRequest(new
+                    {
+                        errors = new
+                        {
+                            EmailOrPassword = new List<string> { "Email ou senha incorretos." }
+                        }
+                    });
                 }
             }
             catch (System.Exception)

@@ -7,7 +7,7 @@ namespace Backend.Models
         [Key]
         public long Id { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigtório")]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [MaxLength(100, ErrorMessage = "Tamanho máximo é 100 caracteres")]
         [MinLength(3, ErrorMessage = "Tamanho minimo necessário é 3 caracteres")]
         public string Name { get; set; }
